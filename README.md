@@ -20,7 +20,7 @@ You can install the necessary Python packages using pip:
 
 sh
 
-pip install pyodbc pytest
+    pip install pyodbc pytest
 
 Setup
 
