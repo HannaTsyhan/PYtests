@@ -18,7 +18,6 @@ Before running these tests, ensure you have the following installed:
 
 You can install the necessary Python packages using pip:
 
-sh
 
     pip install pyodbc pytest
 
