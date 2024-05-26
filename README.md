@@ -24,16 +24,16 @@ pip install pyodbc pytest
 
 Setup
 
-    Database Connection Configuration:
-    The database connection details are specified in the create_cursor function. Make sure to update the connection details if your setup is different.
+Database Connection Configuration:
+The database connection details are specified in the create_cursor function. Make sure to update the connection details if your setup is different.
 
     python
 
-driver = "ODBC Driver 17 for SQL Server"
-server = "EPPLKRAW0392\\SQLEXPRESS"
-database = "AdventureWorks2012"
-username = "testLogin"
-password = "11111"
+    driver = "ODBC Driver 17 for SQL Server"
+    server = "EPPLKRAW0392\\SQLEXPRESS"
+    database = "AdventureWorks2012"
+    username = "testLogin"
+    password = "11111"
 
 Database:
 Ensure that the AdventureWorks2012 database is restored and available on the specified SQL Server instance.
