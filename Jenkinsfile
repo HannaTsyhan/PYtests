@@ -10,9 +10,9 @@ when {
        }
    }
       steps {
-      bat 'sudo apt-get install python3'
-                bat 'sudo apt install python3-pip'
 
+        bat 'python3 --version'
+        bat 'source venv/Scripts/activate'
       }
     }
         stage('Test') {
