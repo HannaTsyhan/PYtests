@@ -10,7 +10,8 @@ when {
        }
    }
       steps {
-        sh 'pip install -r requirements.txt'
+        sh 'python --version'
+
       }
     }
         stage('Test') {
@@ -19,6 +20,7 @@ when {
        }
    }
             steps {
+                sh 'pip install -r requirements.txt'
                 sh 'make check || true'
                 sh 'pytest ./testSQL.py'
                 sh 'pytest testSQL.py --html=report.html'
