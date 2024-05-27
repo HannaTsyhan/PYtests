@@ -10,7 +10,7 @@ when {
        }
    }
       steps {
-        sh 'python --version'
+        bat 'python --version'
 
       }
     }
@@ -20,10 +20,10 @@ when {
        }
    }
             steps {
-                sh 'pip install -r requirements.txt'
-                sh 'make check || true'
-                sh 'pytest ./testSQL.py'
-                sh 'pytest testSQL.py --html=report.html'
+                bat 'pip install -r requirements.txt'
+                bat 'make check || true'
+                bat 'pytest ./testSQL.py'
+                bat 'pytest testSQL.py --html=report.html'
             }
         }
     }
