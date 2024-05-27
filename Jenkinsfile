@@ -10,6 +10,8 @@ when {
        }
    }
       steps {
+      bat 'sudo apt-get install python3'
+                bat 'sudo apt install python3-pip'
         bat 'python --version'
 
       }
@@ -20,6 +22,7 @@ when {
        }
    }
             steps {
+
                 bat 'pip install -r requirements.txt'
                 bat 'make check || true'
                 bat 'pytest ./testSQL.py'
