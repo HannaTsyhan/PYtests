@@ -12,7 +12,6 @@ when {
       steps {
       bat 'sudo apt-get install python3'
                 bat 'sudo apt install python3-pip'
-        bat 'python --version'
 
       }
     }
