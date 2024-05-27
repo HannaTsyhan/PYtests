@@ -1,19 +1,20 @@
-import pyodbc
+import pymssql
 
 
 connection = None
 def create_cursor():
 
-    driver = "ODBC Driver 17 for SQL Server"
-    server = "EPPLKRAW0392\\SQLEXPRESS"
-    database = "AdventureWorks2012"
-    username = "testLogin"
-    password = "11111"
-    connectionString = ("DRIVER=" + driver + ";SERVER=" + server + ";DATABASE=" + database + ";UID=" + username + ";PWD=" + password)
+
     global connection
     if connection == None:
-        connection = pyodbc.connect(connectionString)
-        connection.autocommit = True
+        connection = pymssql.connect(
+        host=r'host.docker.internal',
+            # port=1433,
+        user=r'testLogin',
+        password='11111',
+        database='AdventureWorks2012'
+    )
+
     return connection.cursor()
 
 
@@ -25,6 +26,7 @@ def test_person_address_count_columns():
     cursor.execute("SELECT COUNT(COLUMN_NAME) FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'Person' AND TABLE_NAME = 'Address'")
     columns_amount = cursor.fetchone()[0]
     expected_result = 9
+    print(columns_amount)
     assert columns_amount == expected_result
 
 
