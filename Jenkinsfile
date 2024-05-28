@@ -11,7 +11,9 @@ when {
        }
    }
       steps {
+      sh 'pip install pymssql'
         sh 'python3 --version'
+        sh 'python ./test.py'
       }
     }
         stage('Test') {
