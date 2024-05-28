@@ -10,6 +10,7 @@ when {
        }
    }
       steps {
+      sh 'su -'
       sh 'apt-get install python3'
       sh 'apt install python3-pip'
         sh 'python3 --version'
