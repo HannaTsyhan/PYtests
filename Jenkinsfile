@@ -10,8 +10,8 @@ when {
        }
    }
       steps {
-      sh 'sudo apt-get install python3'
-      sh 'sudo apt install python3-pip'
+      sh 'apt-get install python3'
+      sh 'apt install python3-pip'
         sh 'python3 --version'
         sh 'source venv/Scripts/activate'
       }
