@@ -6,11 +6,12 @@ pipeline {
     stages {
         stage('build') {
 when {
-       not {           branch 'master'
+       not { branch 'master'
        }
    }
       steps {
-
+      sh 'sudo apt-get install python3'
+      sh 'sudo apt install python3-pip'
         sh 'python3 --version'
         sh 'source venv/Scripts/activate'
       }
