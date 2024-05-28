@@ -1,39 +1,19 @@
-
-
 pipeline {
-    agent {
-      docker {
-        image 'python:3'
-
-      }
-    }
-
+    agent any
     stages {
-        stage('build') {
-when {
-       not { branch 'master'
-       }
-   }
-      steps {
-      sh 'apt-get install python3'
-      sh 'apt install python3-pip'
-        sh 'python3 --version'
-        sh 'source venv/Scripts/activate'
-      }
-    }
-        stage('Test') {
-        when {
-       not {           branch 'master'
-       }
-   }
+        stage('Build') {
+            agent {
+                docker {
+                    image 'gradle:8.2.0-jdk17-alpine'
+                    // Run the container on the node specified at the
+                    // top-level of the Pipeline, in the same workspace,
+                    // rather than on a new node entirely:
+                    reuseNode true
+                }
+            }
             steps {
-
-                sh """
-              python --version
-              python ./test.py
-              """
+                sh 'gradle --version'
             }
         }
     }
 }
-
