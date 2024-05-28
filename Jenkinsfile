@@ -1,7 +1,12 @@
 
 
 pipeline {
-    agent any
+    agent {
+      docker {
+        image 'python:3'
+        label 'my-build-agent'
+      }
+    }
 
     stages {
         stage('build') {
@@ -10,7 +15,6 @@ when {
        }
    }
       steps {
-      sh 'su -'
       sh 'apt-get install python3'
       sh 'apt install python3-pip'
         sh 'python3 --version'
@@ -24,11 +28,12 @@ when {
    }
             steps {
 
-                sh 'pip install -r requirements.txt'
-                sh 'make check || true'
-                sh 'pytest ./testSQL.py'
-                sh 'pytest testSQL.py --html=report.html'
+                sh """
+              python --version
+              python ./test.py
+              """
             }
         }
     }
 }
+
