@@ -9,7 +9,7 @@ when {
             }
      }
       steps {
-      sh 'su -S <<< "1111" -c "apt-get install python3-pip"'
+
       sh 'pip install pymssql'
         sh 'python3 --version'
         sh 'python ./test.py'
