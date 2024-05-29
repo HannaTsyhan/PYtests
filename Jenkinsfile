@@ -6,8 +6,10 @@ pipeline {
 
 
         stage('Build') {
-            withPythonEnv('/usr/bin/python3.11'){
-                sh "pip install pytest-html"
+         steps {
+                withPythonEnv('/usr/bin/python3.11'){
+                    sh "pip install pytest-html"
+                }
             }
         }
 
