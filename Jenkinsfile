@@ -17,6 +17,7 @@ pipeline {
          steps {
                 withPythonEnv('/usr/bin/python3.11'){
                     sh "pip install pytest-html"
+                    sh "pip install pymssql"
                 }
             }
         }
