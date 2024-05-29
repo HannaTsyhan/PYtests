@@ -10,6 +10,10 @@ pipeline {
 
 
         stage('Build') {
+                        when {
+                   not { branch 'master'
+                       }
+                }
          steps {
                 withPythonEnv('/usr/bin/python3.11'){
                     sh "pip install pytest-html"
@@ -18,6 +22,10 @@ pipeline {
         }
 
         stage('Test') {
+                when {
+                   not { branch 'master'
+                       }
+                }
             steps {
                 withPythonEnv('/usr/bin/python3.11'){
                         sh """
@@ -29,6 +37,10 @@ pipeline {
         }
 
         stage('Report') {
+                        when {
+                   not { branch 'master'
+                       }
+                }
             steps {
                 withPythonEnv('/usr/bin/python3.11'){
                         sh """
