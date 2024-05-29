@@ -45,6 +45,7 @@ pipeline {
             steps {
                 withPythonEnv('/usr/bin/python3.11'){
                         sh """
+                       pytest  /var/jenkins_home/workspace/Py_tests_HW_5/testSQL.py
                       pytest --html report.html
                       """
                       }
