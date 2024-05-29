@@ -1,44 +1,31 @@
-
-
 pipeline {
     agent any
 
-    stages {
-        stage('Setup') {
-            steps{
-                script {
-                    sh 'python3 --version'
-                    sh 'pip --version'
-                    sh 'python3 -m venv venv'
-                    sh '''
-                    . venv/bin/activate
-                    pip install -r requirements.txt'''
 
-                        }
-                   }
-                        }
+    stages {
         stage('build') {
 when {
        not { branch 'master'
-           }
-      }
-      steps {
-      echo 'Building...'
             }
+     }
+      steps {
+      sh 'su -S <<< "1111" -c "apt-get install python3-pip"'
+      sh 'pip install pymssql'
+        sh 'python3 --version'
+        sh 'python ./test.py'
+      }
     }
         stage('Test') {
         when {
-       not {  branch 'master'
+       not { branch 'master'
            }
              }
             steps {
-
                 sh """
-             . venv/bin/activate
-             pytest
+              python --version
+              python ./test.py
               """
             }
         }
     }
 }
-
