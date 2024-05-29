@@ -14,7 +14,7 @@ pipeline {
                 withPythonEnv('/usr/bin/python3.11'){
                         sh """
                       python --version
-                      python ./test.py
+                      pytest  /var/jenkins_home/workspace/Py_tests_HW_5/testSQL.py
                       """
                       }
                 }
