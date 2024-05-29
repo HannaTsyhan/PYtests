@@ -19,7 +19,6 @@ pipeline {
                         sh """
                       python --version
                       pytest  /var/jenkins_home/workspace/Py_tests_HW_5/testSQL.py
-                      --html=report.html
                       """
                       }
                 }
