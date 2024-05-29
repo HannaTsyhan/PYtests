@@ -45,7 +45,7 @@ pipeline {
             steps {
                 withPythonEnv('/usr/bin/python3.11'){
                         sh """
-                      pytest  --html=report.html
+                      pytest --html report.html
                       """
                       }
                 }
