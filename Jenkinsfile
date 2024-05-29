@@ -3,9 +3,7 @@ pipeline {
 
 
     stages {
-        stage('SetUp'){
 
-        }
 
         stage('Test') {
         when {
