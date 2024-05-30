@@ -43,7 +43,7 @@ pipeline {
                           }
                     }
             steps {
-                       sh 'git clone --branch release-1.0.0'
+                       sh 'git clone https://github.com/HannaTsyhan/PYtests.git --branch release-1.0.0'
                 }
         }
     }
