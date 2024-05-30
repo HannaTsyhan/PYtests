@@ -8,8 +8,15 @@ pipeline {
     stages {
 
          stage('Github') {
+                 when {
+                    expression {
+                          pull_request.merged
+                          }
+                 }
              steps {
+
                       sh "git status"
+                      sh "echo 'PR was merged'"
                 }
         }
 
