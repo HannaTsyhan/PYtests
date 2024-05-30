@@ -31,10 +31,11 @@ pipeline {
         }
 
          stage('Completed') {
-                        when {
-                               { branch 'main'
-                                   }
-                            }
+                         when {
+    expression {
+      env.BRANCH_NAME == 'dev' || env.BRANCH_NAME == 'main'
+      }
+  }
             steps {
                         sh """
                        echo "Completed"
