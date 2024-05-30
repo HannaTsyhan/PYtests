@@ -7,16 +7,24 @@ pipeline {
 
     stages {
 
-        stage('Build') {
-         steps {
-                withPythonEnv('/usr/bin/python3.11'){
-                    sh """
-                        python --version
-                        pip install pytest-html
-                        pip install pymssql
-                    """
+         stage('Github') {
+             steps {
+                    withPythonEnv('/usr/bin/python3.11'){
+                        sh "git status"
+                    }
                 }
-            }
+        }
+
+        stage('Build') {
+             steps {
+                    withPythonEnv('/usr/bin/python3.11'){
+                        sh """
+                            python --version
+                            pip install pytest-html
+                            pip install pymssql
+                        """
+                    }
+                }
         }
 
         stage('Test') {
