@@ -9,9 +9,7 @@ pipeline {
 
          stage('Github') {
              steps {
-                    withPythonEnv('/usr/bin/python3.11'){
-                        sh "git status"
-                    }
+                      sh "git status"
                 }
         }
 
@@ -38,16 +36,14 @@ pipeline {
                 }
         }
 
-         stage('Completed') {
-                         when {
-    expression {
-      env.BRANCH_NAME == 'dev' || env.BRANCH_NAME == 'master'
-      }
-  }
+         stage('Create release') {
+             when {
+                    expression {
+                          env.BRANCH_NAME == 'master'
+                          }
+                    }
             steps {
-                        sh """
-                       echo "Completed"
-                      """
+                       sh 'git clone --branch release-1.0.0'
                 }
         }
     }
