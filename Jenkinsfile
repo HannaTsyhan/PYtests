@@ -5,55 +5,34 @@ pipeline {
         githubPush()
     }
 
-
     stages {
 
-
         stage('Build') {
-                        when {
-                   not { branch 'master'
-                       }
-                }
          steps {
                 withPythonEnv('/usr/bin/python3.11'){
-                    sh "pip install pytest-html"
-                    sh "pip install pymssql"
+                    sh """
+                        python --version
+                        pip install pytest-html
+                        pip install pymssql
+                    """
                 }
             }
         }
 
         stage('Test') {
-                when {
-                   not { branch 'master'
-                       }
-                }
             steps {
                 withPythonEnv('/usr/bin/python3.11'){
                         sh """
-                      python --version
+
                       pytest  /var/jenkins_home/workspace/Py_tests_HW_5/testSQL.py
                       """
                       }
                 }
         }
 
-        stage('Report') {
-                        when {
-                   not { branch 'master'
-                       }
-                }
-            steps {
-                withPythonEnv('/usr/bin/python3.11'){
-                        sh """
-                       pytest  /var/jenkins_home/workspace/Py_tests_HW_5/testSQL.py
-                      pytest --html result.html
-                      """
-                      }
-                }
-        }
          stage('Completed') {
                         when {
-                               not { branch 'master'
+                               { branch 'main'
                                    }
                             }
             steps {
