@@ -29,8 +29,7 @@ pipeline {
             steps {
                 withPythonEnv('/usr/bin/python3.11'){
                         sh """
-
-                      pytest  /var/jenkins_home/workspace/Py_tests_HW_5/testSQL.py
+                          pytest  /var/jenkins_home/workspace/Py_tests_HW_5/testSQL.py
                       """
                       }
                 }
@@ -43,7 +42,11 @@ pipeline {
                           }
                     }
             steps {
-                       sh 'git clone https://github.com/HannaTsyhan/PYtests.git --branch release'
+                       sh '''
+                           git clone https://github.com/HannaTsyhan/PYtests.git --branch release
+                           git checkout release
+                           git push
+                       '''
                 }
         }
     }
