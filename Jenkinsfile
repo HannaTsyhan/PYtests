@@ -7,16 +7,22 @@ pipeline {
 
     stages {
 
-        stage('Build') {
-         steps {
-                withPythonEnv('/usr/bin/python3.11'){
-                    sh """
-                        python --version
-                        pip install pytest-html
-                        pip install pymssql
-                    """
+         stage('Github') {
+             steps {
+                      sh "git status"
                 }
-            }
+        }
+
+        stage('Build') {
+             steps {
+                    withPythonEnv('/usr/bin/python3.11'){
+                        sh """
+                            python --version
+                            pip install pytest-html
+                            pip install pymssql
+                        """
+                    }
+                }
         }
 
         stage('Test') {
@@ -30,16 +36,14 @@ pipeline {
                 }
         }
 
-         stage('Completed') {
-                         when {
-    expression {
-      env.BRANCH_NAME == 'dev' || env.BRANCH_NAME == 'main'
-      }
-  }
+         stage('Create release') {
+             when {
+                    expression {
+                          env.BRANCH_NAME == 'master'
+                          }
+                    }
             steps {
-                        sh """
-                       echo "Completed"
-                      """
+                       sh 'git clone --branch release-1.0.0'
                 }
         }
     }
