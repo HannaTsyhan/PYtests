@@ -52,7 +52,7 @@ pipeline {
   }
             steps {
                        sh '''
-                        rm -r repo
+
                         mkdir repo && cd repo
                         git init
    git config --global user.email "you@ahoo.com"
