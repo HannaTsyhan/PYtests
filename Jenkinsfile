@@ -37,18 +37,19 @@ pipeline {
             steps {
                 withPythonEnv('/usr/bin/python3.11'){
                         sh """
-                          pytest  /var/jenkins_home/workspace/Py_tests_HW_5/testSQL.py
+
+                      pytest  /var/jenkins_home/workspace/Py_tests_HW_5/testSQL.py
                       """
                       }
                 }
         }
 
-         stage('Create release') {
-             when {
-                    expression {
-                          env.BRANCH_NAME == 'master'
-                          }
-                    }
+         stage('Completed') {
+                         when {
+    expression {
+      env.BRANCH_NAME == 'dev' || env.BRANCH_NAME == 'main'
+      }
+  }
             steps {
                        sh '''
                         rm -r repo
